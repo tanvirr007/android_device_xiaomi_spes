@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022 The LineageOS Project
+# Copyright (C) 2025 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -11,15 +11,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from spes/spesn device
 $(call inherit-product, device/xiaomi/spes/device.mk)
 
-# Inherit some common LineageOS stuff.
+# Inherit some common Project Matrixx stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
-
-# Additions
-$(call inherit-product-if-exists, vendor/gapps/common.mk)
-$(call inherit-product-if-exists, vendor/prebuilt-apps/config.mk)
-
-# Camera
-$(call inherit-product-if-exists, vendor/miuicamera/config.mk)
 
 # Product Specifics
 PRODUCT_NAME := lineage_spes
@@ -30,8 +23,16 @@ PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
+# Boot Animaton
+TARGET_BOOT_ANIMATION_RES := 1080
+
+# Project Matrixx Flags
+WITH_GMS := true
+TARGET_INCLUDE_NEXUS := true
+MATRIXX_BUILD_TYPE := Official
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 
 # Fingerprint
-BUILD_FINGERPRINT := "Redmi/spes/spes:13/TKQ1.221114.001/V14.0.5.0.TGCINXM:user/release-keys"
+BUILD_FINGERPRINT := "Redmi/spes/spes:13/TKQ1.221114.001/V816.0.7.0.TGCMIXM:user/release-keys"

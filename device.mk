@@ -109,10 +109,15 @@ PRODUCT_PACKAGES += \
     audio.usb.default
 
 PRODUCT_PACKAGES += \
+    libaudioroute \
+    libaudioroute.vendor \
     libaudio-resampler \
+    libaudioroute.vendor \
+    libprocessgroup.vendor \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+    libstagefright_softomx_plugin.vendor \
     libtinycompress
 
 # Audio configs
@@ -142,13 +147,12 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-impl-qti.recovery \
     android.hardware.boot@1.2-service
 
-PRODUCT_PACKAGES_DEBUG += \
-    bootctl
-
 # Camera
 PRODUCT_PACKAGES += \
+    libutilscallstack.vendor \
     android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service_64
+    android.hardware.camera.provider@2.4-service_64 \
+    libpng.vendor
 
 PRODUCT_PACKAGES += \
     libcamera2ndk_vendor \
@@ -172,7 +176,7 @@ PRODUCT_PACKAGES += \
 
 # Dex/ART optimization
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
-PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
+PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := speed-profile
 USE_DEX2OAT_DEBUG := false
 
 # Display
@@ -214,8 +218,10 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
+    android.hardware.drm@1.3.vendor \
     android.hardware.drm@1.4.vendor \
-    android.hardware.drm-service.clearkey
+    android.hardware.drm-service.clearkey \
+    libcrypto_shim.vendor
 
 # Fastbootd
 PRODUCT_PACKAGES += \
@@ -236,7 +242,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3-service.xiaomi \
+    android.hardware.biometrics.fingerprint-service.xiaomi \
+    android.hardware.biometrics.fingerprint@2.1.vendor \
     libvendor.goodix.hardware.biometrics.fingerprint@2.1.vendor \
     vendor.goodix.hardware.fingerprintextension@1.0.vendor \
     com.fingerprints.extension@1.0.vendor
@@ -300,7 +307,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.lights-service.spes
+    android.hardware.light-service.xiaomi
 
 # Lineage Health
 PRODUCT_PACKAGES += \
@@ -379,19 +386,19 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
-# Perf
-PRODUCT_PACKAGES += \
-    libqti-perfd-client
-
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.3.vendor \
-    android.hardware.power-service.xiaomi-libperfmgr
+    android.hardware.power-service.lineage-libperfmgr \
+    libqti-perfd-client
 
 PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
-    hardware/google/pixel
+    hardware/google/pixel \
+    hardware/lineage/interfaces/power-libperfmgr \
+    hardware/qcom-caf/common/libqti-perfd-client
 
+# Perf
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
@@ -401,16 +408,25 @@ PRODUCT_COPY_FILES += \
 
 # QMI
 PRODUCT_PACKAGES += \
+    libcurl.vendor \
     libjson \
+    libjsoncpp.vendor \
     libqti_vndfwk_detect \
     libqti_vndfwk_detect.vendor \
     libvndfwk_detect_jni.qti \
+    libsqlite.vendor \
     libvndfwk_detect_jni.qti.vendor
 
 # Quick Tap
 TARGET_SUPPORTS_QUICK_TAP := true
 
 # RIL
+PRODUCT_PACKAGES += \
+    libcurl.vendor \
+    libprocessgroup.vendor \
+    libnetutils.vendor \
+    libsqlite.vendor
+
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.6.vendor \
     android.hardware.radio.config@1.3.vendor \
@@ -443,7 +459,7 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \
-    android.hardware.sensors@2.1-service.xiaomi-multihal \
+    android.hardware.sensors-service.xiaomi-multihal \
     android.frameworks.sensorservice@1.0.vendor \
     android.frameworks.sensorservice@1.0 \
     libsensorndkbridge
@@ -481,7 +497,12 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.2.vendor
+    android.hardware.usb-service.qti
+
+ifneq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.usb.config=mtp,adb
+endif
 
 # Vendor service manager
 PRODUCT_PACKAGES += \
@@ -501,6 +522,7 @@ PRODUCT_EXTRA_VNDK_VERSIONS := 30
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     hostapd \
+    libcld80211 \
     libwpa_client \
     libwifi-hal-ctrl \
     libwifi-hal-qcom \
@@ -518,12 +540,12 @@ PRODUCT_COPY_FILES += \
 # WiFi Display
 PRODUCT_PACKAGES += \
     libnl \
-    libwfdaac_vendor
+    libwfdaac_vendor \
+    libjsoncpp.vendor \
+    libpng.vendor
 
-ifdef CR_VERSION
 PRODUCT_BOOT_JARS += \
     WfdCommon
-endif
 
 # XiaomiParts
 PRODUCT_PACKAGES += \
@@ -532,3 +554,16 @@ PRODUCT_PACKAGES += \
 # No Cutout Overlay
 PRODUCT_PACKAGES += \
     NoCutoutOverlay
+
+# Include debug tool
+$(call inherit-product, hardware/samsung-ext/interfaces/debug-tools/debug.mk)
+
+# Include Leica//Miui Camera
+$(call inherit-product, vendor/xiaomi/miuicamera/config.mk)
+
+# Remove unnecessary system apps (e.g., AudioFX)
+PRODUCT_PACKAGES += \
+    RemovePackages
+
+# Sign keys path
+$(call inherit-product, vendor/lineage-priv/keys/keys.mk)
