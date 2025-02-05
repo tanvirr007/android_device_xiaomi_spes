@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2020, The Linux Foundation. All rights reserved.
  * Not a Contribution.
  *
- * Copyright (C) 2013 The Android Open Source Project
+ * Copyright (C) 2025 The Apple Project
  *
  * Changes from Qualcomm Innovation Center are provided under the following license:
  * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.

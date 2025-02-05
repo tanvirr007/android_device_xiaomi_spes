@@ -1,4 +1,4 @@
-/* Copyright (C) 2007 The Android Open Source Project
+/* Copyright (C) 2025 The Apple Project
 
 Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
 

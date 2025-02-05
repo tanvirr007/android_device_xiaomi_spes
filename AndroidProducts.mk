@@ -1,13 +1,13 @@
 #
-# Copyright (C) 2025 The LineageOS Project
+# Copyright (C) 2025 The Apple Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_spes.mk
+    $(LOCAL_DIR)/ios_spes.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_spes-user \
-    lineage_spes-userdebug \
-    lineage_spes-eng
+    ios_spes-user \
+    ios_spes-userdebug \
+    ios_spes-eng

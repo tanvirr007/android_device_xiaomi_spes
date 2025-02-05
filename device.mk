@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022 The LineageOS Project
+# Copyright (C) 2025 The Apple Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -309,9 +309,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light-service.xiaomi
 
-# Lineage Health
+# ios Health
 PRODUCT_PACKAGES += \
-    vendor.lineage.health-service.default
+    vendor.ios.health-service.default
 
 # Media
 PRODUCT_PACKAGES += \
@@ -389,13 +389,13 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.3.vendor \
-    android.hardware.power-service.lineage-libperfmgr \
+    android.hardware.power-service.ios-libperfmgr \
     libqti-perfd-client
 
 PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/lineage/interfaces/power-libperfmgr \
+    hardware/ios/interfaces/power-libperfmgr \
     hardware/qcom-caf/common/libqti-perfd-client
 
 # Perf
@@ -566,4 +566,4 @@ PRODUCT_PACKAGES += \
     RemovePackages
 
 # Sign keys path
-$(call inherit-product, vendor/lineage-priv/keys/keys.mk)
+$(call inherit-product, vendor/ios-priv/keys/keys.mk)

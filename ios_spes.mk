@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2025 The LineageOS Project
+# Copyright (C) 2025 The Apple Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -12,10 +12,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/xiaomi/spes/device.mk)
 
 # Inherit some common Project Matrixx stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/ios/config/common_full_phone.mk)
 
 # Product Specifics
-PRODUCT_NAME := lineage_spes
+PRODUCT_NAME := ios_spes
 PRODUCT_DEVICE := spes
 PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := Redmi Note 11
@@ -32,7 +32,7 @@ TARGET_INCLUDE_NEXUS := true
 MATRIXX_BUILD_TYPE := Official
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-ios
 
 # Fingerprint
 BUILD_FINGERPRINT := "Redmi/spes/spes:13/TKQ1.221114.001/V816.0.7.0.TGCMIXM:user/release-keys"

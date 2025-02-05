@@ -7,7 +7,7 @@ END="\033[0m"
 VENDOR_BRANCH="15.0"
 KERNEL_BRANCH="NaughtySilver"
 HARDWARE_BRANCH="15.0"
-DEBUG_BRANCH="lineage-22"
+DEBUG_BRANCH="ios-22"
 LEICA_CAMERA_BRANCH="leica-5.0"
 
 check_dir() {

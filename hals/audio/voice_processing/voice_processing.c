@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 The Android Open Source Project
+ * Copyright (C) 2025 The Apple Project
  * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

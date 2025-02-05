@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 The Apple Project
  * Copyright (c) 2010-2015, The Linux Foundation. All rights reserved.
  *
  * Not a Contribution, Apache license notifications and license are retained

@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022 The LineageOS Project
+# Copyright (C) 2025 The Apple Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -116,10 +116,10 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml
 DEVICE_MATRIX_FILE += $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest.xml
-ifeq ($(PRODUCT_NAME), lineage_spes)
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest-lineage.xml
+ifeq ($(PRODUCT_NAME), ios_spes)
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest-ios.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix-lineage.xml
+    $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix-ios.xml
 endif
 ODM_MANIFEST_SKUS += k7tn
 ODM_MANIFEST_K7TN_FILES := $(DEVICE_PATH)/configs/hidl/manifest_k7tn.xml
@@ -166,7 +166,7 @@ TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_LINUX_KERNEL_VERSION := 4.19
 TARGET_KERNEL_CLANG_VERSION := r522817
 
-# Lineage Health
+# ios Health
 TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
 
 # LMKD
@@ -259,7 +259,7 @@ BOARD_VNDK_VERSION := current
 # Sepolicy
 include device/qcom/sepolicy_vndr/legacy-um/SEPolicy.mk
 
-include device/lineage/sepolicy/libperfmgr/sepolicy.mk
+include device/ios/sepolicy/libperfmgr/sepolicy.mk
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 ifdef CR_VERSION
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private-cr
